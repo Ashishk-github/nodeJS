@@ -1,32 +1,37 @@
 const http= require('http');
-
+const fs=require('fs');
 const server=http.createServer((req,res)=>{
     const url=req.url;
-    if(url==='/home'){
+    const method=req.method;
+    if(url==='/'){
         res.write('<html>');
-        res.write('<head><title>Home Page</title></head>');
-        res.write('<body><h1>Welcome Home</h1></body>');
+        res.write('<head><title>Enter Message</title></head>');
+        res.write('<body id="body"><form action="/message" method="POST" ><input id="input" type="text" name="message"><button type="submit">Send</button></form></body>');
         res.write('</html>');
-        res.end();
-    }else if(url==='/about'){
-        res.write('<html>');
-        res.write('<head><title>About Page</title></head>');
-        res.write('<body><h1>Welcome to About us Page</h1></body>');
-        res.write('</html>');
-        res.end();
-    }else if(url==='/node'){
-        res.write('<html>');
-        res.write('<head><title>NodeJS Page</title></head>');
-        res.write('<body><h1>Welcome to my NodeJS Page</h1></body>');
-        res.write('</html>');
-        res.end();
-    }else{
+        return res.end();
+    }
+    //function createli(){}
+    if(url==='/message' && method==="POST"){
+        const body=[];
+        req.on('data',(chunk)=>{
+            console.log(chunk);
+            body.push(chunk);
+        });
+        req.on('end',()=>{
+            const parseBody=Buffer.concat(body).toString();
+            var message=parseBody.split("=")[1];
+            fs.writeFileSync('message.txt',message);
+        });
+        res.statusCode=302;
+        res.setHeader('location','/');
+        return res.end();
+    }
         res.setHeader('contentType','text/html');
         res.write('<html>');
         res.write('<head><title>My First WebPage</title></head>');
         res.write('<body><h1>My First WebPage</h1></body>');
         res.write('</html>');
         res.end();
-    }
+    
 });
 server.listen(4000);
