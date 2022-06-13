@@ -36,3 +36,8 @@ const requestHandler=(req,res)=>{
     
 }
 module.exports=requestHandler;
+/*module.exports={
+    handler:requestHandler,
+    code:'Coding'
+}*/
+//exports.handler=requestHandler;
