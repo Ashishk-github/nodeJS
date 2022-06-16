@@ -7,6 +7,7 @@ const app=express();
 const adminRouter=require('./routes/admin');
 const shopRouter=require('./routes/shop');
 const contactUs= require('./routes/contact');
+const error=require('./controllers/errors');
 
 app.use(bodyParser.urlencoded({extended: false}));
 //app.use(bodyParser.json());
@@ -14,7 +15,5 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use('/admin',adminRouter);
 app.use('/',contactUs);
 app.use('/',shopRouter);
-app.use((req,res,next)=>{
-    res.status(404).sendFile(path.join(rootDir,'views','404.html'));
-})
+app.use(error.e404);
 app.listen(3000);
