@@ -9,8 +9,9 @@ module.exports = class Product {
   }
 
   updateProduct(){
-      return db.execute('UPDATE products SET title=?,price=?,description=?,imageURL=? WHERE ',
-      [this.title,this.price,this.description,this.imageUrl]);
+
+      return db.execute('UPDATE products SET title=?,price=?,description=?,imageURL=? WHERE id=?',
+      [this.title,this.price,this.description,this.imageUrl,this.id]);
   }
 
   save() {
