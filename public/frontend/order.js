@@ -1,6 +1,6 @@
 const orderDetailContainer=document.getElementById('orders');
 window.addEventListener('DOMContentLoaded',async()=>{
-    const orders=await axios.get('http://localhost:3000/orders');
+    const orders=await axios.get('http://18.237.251.236:3000/orders');
     console.log(orders.data);
     showOrders(orders.data);
 });

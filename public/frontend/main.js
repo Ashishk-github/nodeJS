@@ -5,7 +5,7 @@ let cartPageCount=1;
 let cartItems=[]
 window.addEventListener('DOMContentLoaded',()=>{
     pageNavig();
-    axios.get('http://localhost:3000/cart')
+    axios.get('http://18.237.251.236:3000/cart')
     .then(res1=>{
             showCartItems(res1.data)});
 })
@@ -43,10 +43,10 @@ function pageNavigbtn(){
 }
 
 async function pageNavig(){
-    const count=await axios.get('http://localhost:3000/productcount');
+    const count=await axios.get('http://18.237.251.236:3000/productcount');
     pageCount=Math.round(parseInt(count.data)/2);
     console.log(pageCount);
-    const url='http://localhost:3000/products/'+pageId.toString();
+    const url='http://18.237.251.236:3000/products/'+pageId.toString();
     const products=await axios.get(url);
     showProducts(products);
     console.log(4)
@@ -84,11 +84,11 @@ function addtocart(){
     const params = new URLSearchParams();
     params.append('id', id);
     console.log(id);
-    axios.post('http://localhost:3000/cart', params)
+    axios.post('http://18.237.251.236:3000/cart', params)
     .then((res)=>{
         createNotif(name);
         console.log(res)
-        axios.get('http://localhost:3000/cart')
+        axios.get('http://18.237.251.236:3000/cart')
         .then(res1=>{
             
             showCartItems(res1.data)});
@@ -130,18 +130,18 @@ function cartClose(){
     cartPop.classList.remove('active');
 }
 async function purchase(){
-    const order=await axios.post('http://localhost:3000/create-order');
+    const order=await axios.post('http://18.237.251.236:3000/create-order');
     console.log(order);
     createNotif('ThankYou for ordering,Order');
-    const res=await axios.get('http://localhost:3000/cart');
+    const res=await axios.get('http://18.237.251.236:3000/cart');
     showCartItems(res.data);
 }
 async function remove(){
     console.log(event.target.parentNode.parentNode.id);
     const id=event.target.parentNode.parentNode.id
-    const url="http://localhost:3000/cart-delete-item/"+id;
+    const url="http://18.237.251.236:3000/cart-delete-item/"+id;
     const res=await axios.delete(url);
-    const res1=await axios.get('http://localhost:3000/cart');
+    const res1=await axios.get('http://18.237.251.236:3000/cart');
     showCartItems(res1.data);
 }
 function createNotif(name){

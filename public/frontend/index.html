@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="main.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+</head>
+<body>
+    
+    <h1>The Generics</h1>
+    <div class="music" onclick="addtocart()" id="products">
+        <!--h1>Music</h1>
+        <div class="product" id="music1">
+            <h2>Music1</h2>
+            <img src="https://prasadyash2411.github.io/ecom-website/img/Album%201.png">
+            <span>$</span><p>20</p>
+            <button >Add to Cart</button>
+        </div>
+        <div class="product" id="music2">
+            <h2>Music2</h2>
+            <img src="https://prasadyash2411.github.io/ecom-website/img/Album%202.png">
+            <span>$</span><p>20</p>
+            <button >Add to Cart</button>
+        </div>
+        <div class="product" id="music3">
+            <h2>Music3</h2>
+            <img src="https://prasadyash2411.github.io/ecom-website/img/Album%203.png">
+            <span>$</span><p>20</p>
+            <button >Add to Cart</button>
+        </div>
+        <div class="product" id="music4">
+            <h2>Music4</h2>
+            <img src="https://prasadyash2411.github.io/ecom-website/img/Album%204.png">
+            <span>$</span><p>20</p>
+            <button >Add to Cart</button>
+        </div>
+        <h1>Merchandise</h1>
+        <div class="product" id="merch1">
+            <h2>Shirt</h2>
+            <img src="https://prasadyash2411.github.io/ecom-website/img/Shirt.png">
+            <span>$</span><p>20</p>
+            <button >Add to Cart</button>
+        </div>
+        <div class="product" id="merch2">
+            <h2>Cup</h2>
+            <img src="https://prasadyash2411.github.io/ecom-website/img/Cofee.png">
+            <span>$</span><p>20</p>
+            <button >Add to Cart</button>
+        </div-->
+    </div>
+    <div class="cart">
+        <button  onclick="cartOpen()">See Cart</button>
+    </div>
+    <div class="page-bar" id="page-bar" onclick="pageNavigbtn()">
+        <span id="firstbtn"><button >first</button></span>
+        <span id="prevbtn"><button>prev</button></span>
+        <span id="curr"></span>
+        <span id="nextbtn"><button>next</button></span>
+        <span id="lastbtn"><button >last</button></span>
+    </div>
+    <div class="media">
+        <h1>Generics</h1>
+    </div>
+    <div class="cartPop" id="cartPop">
+        <h2>CART</h2>
+        <button class="closecart" onclick="cartClose()">X</button>
+        <div id="cart-container"><nav class="cartTable" id="cartTable">
+                <span class="cart-item">Item</span>
+                <span class="cart-price">Price</span>
+                <span class="cart-qty">Quantity</span>
+        </nav></div>
+        <div class="page-bar" id="page-bar" onclick="cartNavigbtn()">
+            <span id="cfirstbtn"><button >first</button></span>
+            <span id="cprevbtn"><button>prev</button></span>
+            <span id="c-curr"></span>
+            <span id="cnextbtn"><button>next</button></span>
+            <span id="clastbtn"><button >last</button></span>
+        </div>
+        <h2 id="total">Total:</h2>
+        <button class="purchase" onclick="purchase()">Purchase</button>
+    </div>
+    <nav>
+        <ul>
+            <span><a href="./home.html">Home</a></span>
+            <span><a href="./index.html">Product</a></span>
+            <span><a href="./about.html">About</a></span>
+            <span><a href="./order-details.html">Orders</a></span> 
+        </ul>  
+        <span class="cart-toggle"><button onclick="cartOpen()" >Cart</span>
+        
+    </nav>
+    <div id="container"></div>
+</body>
+</html>
