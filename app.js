@@ -1,6 +1,10 @@
 const path = require('path');
 
 const express = require('express');
+const app = express();
+const dotenv=require('dotenv');
+dotenv.config();
+//console.log(process.env);
 const bodyParser = require('body-parser');
 const cors=require('cors');
 const errorController = require('./controllers/error');
@@ -12,7 +16,7 @@ const CartItem = require('./models/cart-item');
 const Order = require('./models/order');
 const OrderItem = require('./models/order-item');
 
-const app = express();
+
 app.use(cors())
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -34,6 +38,9 @@ app.use((req, res, next) => {
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
+app.use((req,res)=>{
+  res.sendFile(path.join(__dirname,`public/${req.url}`));
+})
 
 app.use(errorController.get404);
 

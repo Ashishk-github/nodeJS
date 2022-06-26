@@ -77,7 +77,8 @@ exports.getCart = (req, res, next) => {
 };
 
 exports.postCart = (req, res, next) => {
-  const prodId = req.body.productId;
+  const prodId = req.body.id;
+  console.log(prodId);
   let fetchedCart;
   let newQuantity = 1;
   req.user
@@ -111,7 +112,7 @@ exports.postCart = (req, res, next) => {
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {
-  const prodId = req.body.productId;
+  const prodId = req.params.id;
   req.user
     .getCart()
     .then(cart => {
@@ -152,20 +153,27 @@ exports.postOrder = (req, res, next) => {
       return fetchedCart.setProducts(null);
     })
     .then(result => {
-      res.redirect('/orders');
+      res.send('ordered');
     })
-    .catch(err => console.log(err));
+    .catch(err => res.send(err));
 };
 
 exports.getOrders = (req, res, next) => {
   req.user
     .getOrders({include: ['products']})
     .then(orders => {
-      res.render('shop/orders', {
-        path: '/orders',
-        pageTitle: 'Your Orders',
-        orders: orders
-      });
+      res.json(orders);
+      // res.render('shop/orders', {
+      //   path: '/orders',
+      //   pageTitle: 'Your Orders',
+      //   orders: orders
+      // });
     })
     .catch(err => console.log(err));
 };
+exports.getProductCount=(req,res,next)=>{
+  Product.findAll()
+  .then(products=>{
+    res.json(products.length);
+  })
+}
